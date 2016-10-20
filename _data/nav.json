@@ -1,0 +1,32 @@
+{
+	main: [
+		{
+			url: '/',
+			name: {
+				fr: 'Accueil',
+				en: 'Home'
+			}
+		},
+		{
+			url: '/about',
+			name: {
+				fr: 'À Propos',
+				en: 'About'
+			}
+		},
+		{
+			url: '/blog',
+			name: {
+				en: 'Blog',
+				fr: 'Blog'
+			}
+		},
+		{
+			url: '/feed.xml',
+			name: {
+				en: 'RSS',
+				fr: 'RSS'
+			}
+		}
+	]
+}
