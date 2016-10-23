@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="column small-8 large-12">
-      <h1 class="sidebar__logo logo"><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>
+      <h1 class="sidebar__logo logo"><a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/images/cayu.svg" width="80px" height="80px"/>{{ site.title }}</a></h1>
       <div class="sidebar__description font-tiny">{{ site.description }}</div>
     </div>
 
@@ -13,16 +13,21 @@
       <div class="column small-12 large-12">
         <nav class="navigation">
           <ul class="list-bare text-center">
-			{% for item in site.data.nav.main %}
-				<li>
-					<a class="page-link" href="{{ item.url | prepend: site.baseurl }}">{{ item.name.en }}</a>
-				</li>
+			{% for item in site.data.nav.main[lang] %}
+			<li>
+				<a class="page-link" href="{{ item.url | prepend: site.baseurl }}">{{ item.name }}</a>
+			</li>
 			{% endfor %}
-<!--
-            <li>
-              <a class="page-link" href="http://www.google.com/translate?sl=auto&tl=en&u={{ site.url | uri_escape }}{{ page.url | uri_escape }}">English</a>
-            </li>
--->
+			{% if lang == 'fr' %}
+			<li>
+				<b>{{ site.data.lang.fr }}</b> | <a class="page-link" href="{{ site.baseurl | uri_escape }}{{ page.url | uri_escape | replace_first: 'fr', 'en' }}">{{ site.data.lang.en }}</a>
+			</li>
+			{% endif %}
+			{% if lang == 'en' %}
+			<li>
+				<a class="page-link" href="{{ site.baseurl | uri_escape }}{{ page.url | uri_escape | replace_first: 'en', 'fr' }}">{{ site.data.lang.fr }}</a> | <b>{{ site.data.lang.en }}</b>
+			</li>
+			{% endif %}
           </ul>
         </nav>
       </div>

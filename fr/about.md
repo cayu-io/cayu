@@ -1,6 +1,6 @@
 ---
 title: À propos
-permalink: about/
+lang: fr
 image: /images/about.jpg
 ---
 

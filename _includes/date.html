@@ -1,49 +1,53 @@
-
-{% assign day = include.date | date: "%-d" %}
-{% if day == "1" %}
-  {% capture sup %}<sup>er</sup>{% endcapture %}
+{% if include.lang == 'fr' %}
+	{% assign day = include.date | date: "%-d" %}
+	{% if day == "1" %}
+		{% capture sup %}<sup>er</sup>{% endcapture %}
+	{% else %}
+		{% capture sup %}{% endcapture %}
+	{% endif %}
+	
+	{% assign m = include.date | date: "%-m" %}
+	{% case m %}
+		{% when '1' %}
+			{% capture month %}Janvier{% endcapture %}
+			{% capture month_short %}Jan.{% endcapture %}
+		{% when '2' %}
+			{% capture month %}Février{% endcapture %}
+			{% capture month_short %}Fév.{% endcapture %}
+		{% when '3' %}
+			{% capture month %}Mars{% endcapture %}
+			{% capture month_short %}Mars{% endcapture %}
+		{% when '4' %}
+			{% capture month %}Avril{% endcapture %}
+			{% capture month_short %}Avril{% endcapture %}
+		{% when '5' %}
+			{% capture month %}Mai{% endcapture %}
+			{% capture month_short %}Mai{% endcapture %}
+		{% when '6' %}
+			{% capture month %}Juin{% endcapture %}
+			{% capture month_short %}Juin{% endcapture %}
+		{% when '7' %}
+			{% capture month %}Juillet{% endcapture %}
+			{% capture month_short %}Juillet{% endcapture %}
+		{% when '8' %}
+			{% capture month %}Août{% endcapture %}
+			{% capture month_short %}Août{% endcapture %}
+		{% when '9' %}
+			{% capture month %}Septembre{% endcapture %}
+			{% capture month_short %}Sept.{% endcapture %}
+		{% when '10' %}
+			{% capture month %}Octobre{% endcapture %}
+			{% capture month_short %}Oct.{% endcapture %}
+		{% when '11' %}
+			{% capture month %}Novembre{% endcapture %}
+			{% capture month_short %}Nov.{% endcapture %}
+		{% when '12' %}
+			{% capture month %}Décembre{% endcapture %}
+			{% capture month_short %}Déc.{% endcapture %}
+	{% endcase %}
+	
+	{% capture year %}{{ include.date | date: "%Y" }}{% endcapture %}
+	{{ day }}{{ sup }} {{ month }} {{ year }}
 {% else %}
-  {% capture sup %}{% endcapture %}
+	{{ include.date | date: "%-d %B %Y" }}
 {% endif %}
-
-{% assign m = include.date | date: "%-m" %}
-{% case m %}
-  {% when '1' %}
-    {% capture month %}janvier{% endcapture %}
-    {% capture month_short %}jan.{% endcapture %}
-  {% when '2' %}
-    {% capture month %}février{% endcapture %}
-    {% capture month_short %}fév.{% endcapture %}
-  {% when '3' %}
-    {% capture month %}mars{% endcapture %}
-    {% capture month_short %}mars{% endcapture %}
-  {% when '4' %}
-    {% capture month %}avril{% endcapture %}
-    {% capture month_short %}avril{% endcapture %}
-  {% when '5' %}
-    {% capture month %}mai{% endcapture %}
-    {% capture month_short %}mai{% endcapture %}
-  {% when '6' %}
-    {% capture month %}juin{% endcapture %}
-    {% capture month_short %}juin{% endcapture %}
-  {% when '7' %}
-    {% capture month %}juillet{% endcapture %}
-    {% capture month_short %}juillet{% endcapture %}
-  {% when '8' %}
-    {% capture month %}août{% endcapture %}
-    {% capture month_short %}août{% endcapture %}
-  {% when '9' %}
-    {% capture month %}septembre{% endcapture %}
-    {% capture month_short %}sept.{% endcapture %}
-  {% when '10' %}
-    {% capture month %}octobre{% endcapture %}
-    {% capture month_short %}oct.{% endcapture %}
-  {% when '11' %}
-    {% capture month %}novembre{% endcapture %}
-    {% capture month_short %}nov.{% endcapture %}
-  {% when '12' %}
-    {% capture month %}décembre{% endcapture %}
-    {% capture month_short %}déc.{% endcapture %}
-{% endcase %}
-
-{% capture year %}{{ include.date | date: "%Y" }}{% endcapture %}

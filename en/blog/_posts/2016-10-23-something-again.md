@@ -1,9 +1,9 @@
 ---
 
-title: Starting Cayu
+title: Something again
 featured: true
 lang: en
-image: /images/paris-france.jpg
+image: /images/posts/paris-france.jpg
 tags: [news, sweden]
 
 ---

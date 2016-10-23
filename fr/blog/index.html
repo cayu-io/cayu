@@ -3,13 +3,14 @@ layout: default
 lang: fr
 ---
 
+{% assign posts=site.posts | where:"lang", page.lang %}
+
 <div class="wrapper">
-	
 	<div class="row row--full">
 		<div class="post-list">
-		{% for post in paginator.posts %}
+		{% for post in posts %}
 			{% unless post.draft %}
-				{% include post-card.html %}
+			{% include post-card.html %}
 			{% endunless %}
 		{% endfor %}
 		</div>
@@ -18,5 +19,4 @@ lang: fr
 	<div class="row row--full">
 	{% include pagination.html %}
 	</div>
-
 </div>

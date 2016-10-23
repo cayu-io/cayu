@@ -14,8 +14,7 @@
             
 
     <div class="post-card__meta">
-      {% include date.html date=post.date %}
-      <span class="post-card__meta__date">{{ day }}{{ sup }} {{ month }} {{ year }}</span>
+      <span class="post-card__meta__date">{% include date.html date=post.date lang=page.lang %}</span>
     </div>
 
     <h2 class="post-card__title post-card__title--medium">

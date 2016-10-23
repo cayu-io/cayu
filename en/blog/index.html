@@ -1,0 +1,23 @@
+---
+layout: default
+lang: en
+---
+
+{% assign posts=site.posts | where:"lang", page.lang %}
+
+<div class="wrapper">
+	<div class="row row--full">
+		<div class="post-list">
+		{% for post in posts %}
+			{% unless post.draft %}
+			{% include post-card.html %}
+			{% endunless %}
+		{% endfor %}
+		</div>
+	</div>
+	
+	<div class="row row--full">
+	{% include pagination.html %}
+	</div>
+
+</div>

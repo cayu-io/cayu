@@ -31,6 +31,10 @@
       transition: $base-transition-speed;
       text-decoration: none;
       letter-spacing: 1px;
+      
+      img {
+	      margin: .5em auto;
+      }
 
       &:hover {
         color: $color__type--hover;

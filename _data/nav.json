@@ -1,32 +1,40 @@
 {
-	main: [
-		{
-			url: '/',
-			name: {
-				fr: 'Accueil',
-				en: 'Home'
-			}
-		},
-		{
-			url: '/about',
-			name: {
-				fr: 'À Propos',
-				en: 'About'
-			}
-		},
-		{
-			url: '/blog',
-			name: {
-				en: 'Blog',
-				fr: 'Blog'
-			}
-		},
-		{
-			url: '/feed.xml',
-			name: {
-				en: 'RSS',
-				fr: 'RSS'
-			}
-		}
-	]
+	main: {
+		fr: [
+			{
+				url: '/fr',
+				name: 'Accueil'
+			},
+			{
+				url: '/fr/about',
+				name: 'À propos'
+			},
+			{
+				url: '/fr/blog',
+				name: 'Blog'
+			},
+			{
+				url: '/fr/feed.xml',
+				name: 'RSS'
+			},
+		],
+		en: [
+			{
+				url: '/en',
+				name: 'Home'
+			},
+			{
+				url: '/en/about',
+				name: 'About'
+			},
+			{
+				url: '/en/blog',
+				name: 'Blog'
+			},
+			{
+				url: '/en/feed.xml',
+				name: 'RSS'
+			},
+		]
+	}
 }

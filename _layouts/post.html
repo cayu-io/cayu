@@ -7,61 +7,73 @@ layout: default
 {% assign author = site.authors[page.author] %}
 
 <div class="wrapper">
-  <div class="row row--full">
+	<div class="row row--full">
 
-    <div class="column column--center medium-12 large-12">
-      <div class="grey-bg CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url({{ page.image | prepend: site.baseurl }})"></div>
-    </div>
+		<div class="column column--center medium-12 large-12">
+			<div class="grey-bg CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url({{ page.image | prepend: site.baseurl }})"></div>
+		</div>
 
-    <div class="column column--center medium-12 large-10">
-      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+		<div class="column column--center medium-12 large-10">
+			<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+				
+				{% if page.image %}<meta itemprop="og:image" content="{{ base_path }}{{ page.image }}">{% endif %}
+				
+				<header class="post__header">
+					<h2 class="post__title" itemprop="name headline">{{ page.title }}</h2>
+					<time class="post__date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{% include date.html date=page.date lang=page.lang %}</time>
+				</header>
 
-        {% if page.image %}
-          <meta itemprop="og:image" content="{{ base_path }}{{ page.image }}">
-        {% endif %}
+				<div class="post-content" itemprop="articleBody">
+					{{ content }}
+				
+					<div class="post__tags">
+					{% for tag in page.tags %}
+						<a href="{{ site.baseurl }}/tag/{{ tag }}">{{ tag }}</a>
+					{% endfor %}
+					</div>
+				</div>
+				
+				<hr>
 
-        <header class="post__header">
-          <h2 class="post__title" itemprop="name headline">{{ page.title }}</h2>
-          {% include date.html date=page.date %}
-          <time class="post__date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ day }}{{ sup }} {{ month }} {{ year }}</time>
-        </header>
+				{% if page.author %}{% include author.html %}{% endif %}
 
-        <div class="post-content" itemprop="articleBody">
-          {{ content }}
-          <div class="post__tags">
-            {% for tag in page.tags %}
-<!--               <span>{{ tag }}</span> -->
-              <a href="{{ site.baseurl }}/tag/{{ tag }}">{{ tag }}</a>
-            {% endfor %}
-          </div>
-        </div>
+				{% include share.html %}
 
-        <hr>
+				{% include subscribe-form.html %}
+				
+				<div class="pagination clearfix">
+				{% for post in site.posts %}
+					{% if post.lang == page.lang %}
+						{% if prev %}
+					<div class="column medium-6 large-6 right">
+					  <a class="older-posts" href="{{ post.url }}" title="{{ post.title }}"><span>Article plus ancien</span> <div data-icon="ei-chevron-right"></div></a>
+					</div>
+						{% endif %}
+						{% assign prev = false %}
+						{% if post.id == page.id %}
+							{% assign prev = true %}
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+				
+				{% for post in site.posts reversed %}
+					{% if post.lang == page.lang %}
+						{% if next %}
+					<div class="column medium-6 large-6 left">
+						<a class="newer-posts" href="{{ post.url }}" title="{{ post.title }}"><div data-icon="ei-chevron-left"></div> <span>Article plus récent</span></a>
+					</div>
+							{% break %}
+						{% endif %}
+						{% assign next = false %}
+						{% if post.id == page.id %}
+							{% assign next = true %}
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+				</div>
 
-        {% if page.author %}
-          {% include author.html %}
-        {% endif %}
-
-        {% include share.html %}
-
-        {% include subscribe-form.html %}
-  
-        <div class="pagination clearfix">
-          {% if page.next.url %}
-            <div class="column medium-6 large-6 left">
-              <a class="newer-posts" href="{{ page.next.url }}" title="{{ page.next.title }}"><div data-icon="ei-chevron-left"></div> <span>Article plus récent</span></a>
-            </div>
-          {% endif %}
-          {% if page.previous.url %}
-            <div class="column medium-6 large-6 right">
-              <a class="older-posts" href="{{ page.previous.url }}" title="{{ page.previous.title }}"><span>Article plus ancien</span> <div data-icon="ei-chevron-right"></div></a>
-            </div>
-          {% endif %}
-        </div>
-
-        {% include disqus.html %}
-      </article>
-    </div>
-
-  </div> <!-- row-->
+				{% include disqus.html %}
+			</article>
+		</div>
+	</div> <!-- row-->
 </div> <!-- wrapper -->

@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
 
-{% include head.html %}
+{% assign lang = 'en' %}
+{% if page.lang %}
+	{% assign lang = page.lang %}
+{% endif %}
 
-<body>
+	{% include head.html %}
 
-  {% include analytics.html %}
-
-  <div class="off-canvas-container">
-    {% include sidebar.html %}
-
-    {{ content }}
-  </div>
-
-  <!-- <script type="text/javascript" src="{{ site.baseurl }}{{ '/js/jquery-2.1.4.min.js' }}"></script> -->
-  <!-- <script type="text/javascript" src="{{ site.baseurl }}{{ '/js/jquery.ghostHunter.min.js' }}"></script> -->
-  <!-- <script type="text/javascript" src="{{ site.baseurl }}{{ '/js/script.js' }}"></script> -->
-  <script type="text/javascript" src="{{ site.baseurl }}{{ '/js/main.js' }}"></script>
-</body>
+	<body>
+	
+	  {% include analytics.html %}
+	
+	  <div class="off-canvas-container">
+	    {% include sidebar.html %}
+	
+	    {{ content }}
+	  </div>
+	
+	  <!-- <script type="text/javascript" src="{{ site.baseurl }}{{ '/js/jquery-2.1.4.min.js' }}"></script> -->
+	  <!-- <script type="text/javascript" src="{{ site.baseurl }}{{ '/js/jquery.ghostHunter.min.js' }}"></script> -->
+	  <!-- <script type="text/javascript" src="{{ site.baseurl }}{{ '/js/script.js' }}"></script> -->
+	  <script type="text/javascript" src="{{ site.baseurl }}{{ '/js/main.js' }}"></script>
+	</body>
 
 </html>
